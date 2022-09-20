@@ -61,14 +61,47 @@ const changeColourBtn: HTMLButtonElement = <HTMLButtonElement>(
 // add the event to the button
 changeColourBtn.addEventListener('click', changeColour);
 function changeColour() {
-  //
-
+  // set varible of current typed input
+  let cookieColourInput: string = (
+    document.getElementById('cookieColour-inp') as HTMLInputElement
+  ).value;
+  // set varible of current cookie selected dropdown
+  let cookieSelectedDropdown: string = (
+    document.getElementById('cookieSelector') as HTMLOptionElement
+  ).value;
+  // UI Display
+  for (let i in Cookies) {
+    // colour
+    if (cookieSelectedDropdown === Cookies[i].name) {
+      Cookies[i].colour = cookieColourInput;
+      break;
+    }
+  }
   updateDisplay();
 }
 
 //TODO: this fuction needs to be triggered by button addChocolateChip-btn
 // upon pressing the button it should add a chocolate chip to cookies selected from the dropdown
+// event listener
+const changeChipNumButt: HTMLButtonElement = <HTMLButtonElement>(
+  document.getElementById('addChocolateChip-btn')
+);
+// add the event to the button
+changeChipNumButt.addEventListener('click', addChocolateChip);
 function addChocolateChip() {
+  //get chip count
+  let cookieSelectedDropdown: string = (
+    document.getElementById('cookieSelector') as HTMLOptionElement
+  ).value;
+  // UI Display
+  for (let i in Cookies) {
+    // colour
+    if (cookieSelectedDropdown === Cookies[i].name) {
+      Cookies[i].choclateChipNum++;
+      break;
+    }
+  }
+
   updateDisplay();
 }
 
